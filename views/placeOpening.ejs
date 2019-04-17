@@ -1,0 +1,62 @@
+<% include partials/header.ejs %>
+
+<div class="container" style="margin-top:50px">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="/dashboard" class="list-group-item list-group-item-action">Store Details</a>
+                <a href="#" class="active list-group-item list-group-item-action">Place Opening Hours</a>
+                <a href="dashboard/plots" class="list-group-item list-group-item-action">Visits Plots</a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Day</th>
+                        <th scope="col">Opening Hours</th>
+                        <th scope="col">Closing Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(function(one){%>
+                        <tr>
+                            <td><%=one.weekday%></td>
+                            <td><%=one.from_hour%></td>
+                            <td><%=one.to_hour%></td>
+                        </tr>
+                    <%})%>     
+                </tbody>
+            </table>
+
+            <form action="/dashboard/place/<%=data[0].place%>/openinghours?_method=PATCH" method="POST">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <select class="form-control" id="exampleFormControlSelect1" name="day">
+                        <option value="Monday-1">Monday</option>
+                        <option value="Tuesday-2">Tuesday</option>
+                        <option value="Wednesday-3">Wednesday</option>
+                        <option value="Thursday-4">Thursday</option>
+                        <option value="Friday-5">Friday</option>
+                        <option value="Saturday-6">Saturday</option>
+                        <option value="Sunday-7">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="time" class="form-control" name="oTime" id="Time">
+                        <input type="hidden" name="place_id" value="<%=data[0].place%>"/>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="time" class="form-control" name="cTime" id="Time">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary ">Submit</button>
+                    </div>    
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+<% include partials/footer.ejs %>    
