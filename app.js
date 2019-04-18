@@ -9,7 +9,7 @@ var express                 = require("express"),
 var authRoutes = require("./routes/auth");
 var dashboardRoutes = require("./routes/dashboard");
 
-app.listen(process.env.PORT || 3000,process.env.IP,function(){
+app.listen(process.env.PORT || 3000,function(){
     console.log("Connected..........");
 });
  

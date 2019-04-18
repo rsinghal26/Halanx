@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -17,9 +17,7 @@
     "url": "https://github.com/rsinghal26/Halanx/issues"
   },
   "homepage": "https://github.com/rsinghal26/Halanx#readme",
-  "devDependencies": {
-    "nodemon": "^1.18.11"
-  },
+  "devDependencies": {},
   "dependencies": {
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
@@ -28,7 +26,9 @@
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "method-override": "^3.0.0",
-    "request": "^2.88.0",
-    "token-session": "^1.0.0"
+    "request": "^2.88.0"
+  },
+  "engines": {
+    "node": "8.9.7"
   }
 }
