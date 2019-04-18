@@ -9,9 +9,7 @@ var express                 = require("express"),
 var authRoutes = require("./routes/auth");
 var dashboardRoutes = require("./routes/dashboard");
 
-app.listen(process.env.PORT || 3000,function(){
-    console.log("Connected..........");
-});
+app.listen(process.env.PORT || 3000);
  
 app.use(function(req, res, next) {
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
