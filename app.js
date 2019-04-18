@@ -32,6 +32,7 @@ app.use(flash());
 app.use(methodOverride('_method'));
 
 app.use(function(req,res,next){
+    res.locals.token = req.cookies.auth;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     next();

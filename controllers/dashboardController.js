@@ -14,7 +14,7 @@ exports.get_stores = (req,res)=>{
 
         if(response.statusCode == 200){
             var result = JSON.parse(body);
-            res.render("stores",{store:result, token:req.cookies.auth});
+            res.render("stores",{store:result});
         }          
     });    
 };
@@ -33,7 +33,7 @@ exports.get_timings = (req,res)=>{
         
         if(response.statusCode == 200){
             var result = JSON.parse(body);
-            res.render("placeOpening",{data:result, token:req.cookies.auth});
+            res.render("placeOpening",{data:result});
         }else if(response.statusCode == 401){
             req.flash("error","Please login with Your account to access");
             res.redirect("/auth/login");
@@ -88,5 +88,42 @@ exports.update_timings = (req,res)=>{
             req.flash("error","Something went wrong!! try again later");
             res.redirect("/dashboard");
         }  
+    }); 
+};
+
+exports.get_plot_page = (req,res)=>{
+    res.render("viewPlots",{place_id:req.params.id, dates:0, counts:0});
+};
+
+exports.view_plot = (req,res)=>{
+   // console.log(req.query.from_date);
+    Request.get({
+        "headers": { "Authorization": "Token "+req.cookies.auth},
+        "url": "http://testapi.halanx.com/stores/dashboard/plots/?visits=true&from_date="+req.query.from_date+"&to_date="+req.query.to_date,
+
+    }, (error, response, body) => {
+        if(error) {
+            return console.log(error);
+        }
+
+        if(response.statusCode == 200){
+            var result = JSON.parse(body);
+            var count = [];
+            var date = [];
+            result.visits.forEach(element => {
+                count.push(element.count);
+                date.push(element.date);
+            });
+            res.render("viewPlots",{place_id:req.params.id, dates:date, counts:count});
+        }else if(response.statusCode == 401){
+            req.flash("error","Please login with Your account to access");
+            res.redirect("/auth/login");
+        }else if( response.statusCode == 404){
+            req.flash("error","Data not found");
+            res.redirect("/dashboard");
+        }else{
+            req.flash("error","Something went wrong!! try again later");
+            res.redirect("/dashboard");
+        }          
     }); 
 };

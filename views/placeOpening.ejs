@@ -5,8 +5,8 @@
         <div class="col-md-3">
             <div class="list-group">
                 <a href="/dashboard" class="list-group-item list-group-item-action">Store Details</a>
-                <a href="#" class="active list-group-item list-group-item-action">Place Opening Hours</a>
-                <a href="dashboard/plots" class="list-group-item list-group-item-action">Visits Plots</a>
+                <a href="/dashboard/place/<%=data[0].place%>/openinghours" class="active list-group-item list-group-item-action">Place Opening Hours</a>
+                <a href="/dashboard/plots/<%=data[0].place%>" class="list-group-item list-group-item-action">Visits Plots</a>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
                         <input type="time" class="form-control" name="cTime" id="Time">
                     </div>
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary ">Submit</button>
+                        <button type="submit" class="btn btn-danger ">Submit</button>
                     </div>    
                 </div>
             </form>
