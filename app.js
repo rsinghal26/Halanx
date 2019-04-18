@@ -2,7 +2,6 @@ var express                 = require("express"),
     app                     = express(),
     bodyParser              = require("body-parser"),
     flash                   = require("connect-flash"),
-    Request                 = require("Request"),
     methodOverride          = require('method-override'),
     cookieParser            = require('cookie-parser');
 
